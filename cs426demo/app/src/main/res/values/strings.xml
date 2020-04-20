@@ -1,0 +1,28 @@
+<resources>
+    <string name="app_name">CS 426 Progress Demo</string>
+    <string name="title_activity_settings">Settings</string>
+
+    <!-- Preference Titles -->
+    <string name="messages_header">Messages</string>
+    <string name="sync_header">Sync</string>
+
+    <!-- Messages Preferences -->
+    <string name="signature_title">Your signature</string>
+    <string name="reply_title">Default reply action</string>
+
+    <!-- Sync Preferences -->
+    <string name="sync_title">Sync email periodically</string>
+    <string name="attachment_title">Download incoming attachments</string>
+    <string name="attachment_summary_on">Automatically download attachments for incoming emails
+    </string>
+    <string name="attachment_summary_off">Only download attachments when manually requested</string>
+
+    <!-- CS 426 Strings -->
+    <string name="cs426website">https://sinouye.github.io/AnAmericanAVKAutomaton_Website/</string>
+
+    <!-- Google Maps Strings-->
+    <string name="dialog_location_error">Location Permissions Denied</string>
+    <string name="dialog_location_message">Location services must be enabled in order to get accurate data.\nPlease go into settings for this application and enable location services.</string>
+    <string name="dialog_ok">Ok</string>
+    <string name="title_activity_maps">Map</string>
+</resources>
