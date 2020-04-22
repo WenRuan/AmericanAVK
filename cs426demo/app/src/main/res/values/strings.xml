@@ -25,4 +25,9 @@
     <string name="dialog_location_message">Location services must be enabled in order to get accurate data.\nPlease go into settings for this application and enable location services.</string>
     <string name="dialog_ok">Ok</string>
     <string name="title_activity_maps">Map</string>
+    <!-- Strings used for fragments for navigation -->
+    <string name="next">Next</string>
+    <string name="previous">Previous</string>
+    <string name="title_activity_map_settings">MapSettings</string>
+
 </resources>

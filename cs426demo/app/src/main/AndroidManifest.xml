@@ -19,6 +19,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity
+            android:name=".MapSettingsActivity"
+            android:label="@string/title_activity_map_settings"></activity>
 
         <!--
              The API key for Google Maps-based APIs is defined as a string resource.
@@ -34,14 +37,22 @@
 
         <activity
             android:name=".MapsActivity"
-            android:label="@string/title_activity_maps"></activity>
-        <activity android:name=".HydrantActivity" />
-        <activity android:name=".BrowseActivity" />
+            android:label="@string/title_activity_maps"
+            android:parentActivityName=".MenuActivity" />
+        <activity
+            android:name=".HydrantActivity"
+            android:parentActivityName=".BrowseActivity" />
+        <activity
+            android:name=".BrowseActivity"
+            android:parentActivityName=".MenuActivity" />
         <activity
             android:name=".SettingsActivity"
-            android:label="@string/title_activity_settings" />
+            android:label="@string/title_activity_settings"
+            android:parentActivityName=".MenuActivity" />
         <activity android:name=".MenuActivity" />
-        <activity android:name=".LoginActivity" />
+        <activity
+            android:name=".LoginActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

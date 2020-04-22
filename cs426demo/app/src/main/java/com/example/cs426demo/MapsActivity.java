@@ -1,12 +1,13 @@
 package com.example.cs426demo;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 import androidx.fragment.app.DialogFragment;
-import androidx.fragment.app.FragmentActivity;
 
 import android.Manifest;
+import android.content.Intent;
 import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.graphics.Color;
@@ -14,6 +15,8 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.PersistableBundle;
+import android.view.Menu;
+import android.view.MenuItem;
 
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -36,7 +39,9 @@ import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 
-public class MapsActivity extends FragmentActivity implements OnMapReadyCallback {
+import java.util.List;
+
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
 
     // STATUS CODES
     static final int PERMISSION_LOCATION_REQUEST_CODE = 100;
@@ -108,6 +113,25 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
     }
 
     @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.map_menu, menu);
+
+        return super.onCreateOptionsMenu(menu);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        switch(item.getItemId()) {
+            case R.id.map_settings:
+                Intent intent = new Intent(this, MapSettingsActivity.class);
+                startActivity(intent);
+                return true;
+            default:
+                return super.onOptionsItemSelected(item);
+        }
+    }
+
+    @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
         switch (requestCode) {
@@ -150,10 +174,26 @@ public class MapsActivity extends FragmentActivity implements OnMapReadyCallback
         mMap = googleMap;
 
         // Add a marker in FIRE HYDRANT and move the camera
-        LatLng unrCampus = new LatLng(39.5442, -119.8164);
-        mMap.addMarker(new MarkerOptions()
-                .position(unrCampus)
-                .title("Possible Fire Hydrant"));
+        LatLng[] hydrantList = new LatLng[20];
+        hydrantList[0] = new LatLng(39.544957, -119.816864);
+        hydrantList[1] = new LatLng(39.543435, -119.816692);
+        hydrantList[2] = new LatLng(39.545520, -119.816005);
+        hydrantList[3] = new LatLng(39.542773, -119.816177);
+        hydrantList[4] = new LatLng(39.544361, -119.818580);
+        hydrantList[5] = new LatLng(39.544228, -119.818580);
+        hydrantList[6] = new LatLng(39.543467, -119.816563 );
+        hydrantList[7] = new LatLng(39.542639, -119.814503);
+        hydrantList[8] = new LatLng(39.545667, -119.814784);
+        hydrantList[9] = new LatLng(39.545236, -119.813926);
+        hydrantList[10] = new LatLng(39.544044, -119.813883);
+
+
+        for(int i = 0; i < 10; i++) {
+            mMap.addMarker(new MarkerOptions()
+                    .position(hydrantList[i])
+                    .title("Possible Fire Hydrant"));
+        }
+
 
         drawCircle = new CircleOptions()
                 .center(mUserLocation)

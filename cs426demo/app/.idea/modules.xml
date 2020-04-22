@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
+      <module fileurl="file://$PROJECT_DIR$/../ACTUALPROJECT-cs426demo.iml" filepath="$PROJECT_DIR$/../ACTUALPROJECT-cs426demo.iml" group="cs426demo" />
       <module fileurl="file://$PROJECT_DIR$/app.iml" filepath="$PROJECT_DIR$/app.iml" group="cs426demo/app" />
       <module fileurl="file://$PROJECT_DIR$/../cs426demo.iml" filepath="$PROJECT_DIR$/../cs426demo.iml" group="cs426demo" />
+      <module fileurl="file://$PROJECT_DIR$/cs426demo-app.iml" filepath="$PROJECT_DIR$/cs426demo-app.iml" group="cs426demo/app" />
     </modules>
   </component>
 </project>
