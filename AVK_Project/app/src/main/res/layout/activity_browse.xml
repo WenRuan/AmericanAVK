@@ -62,29 +62,29 @@
     card_view:cardCornerRadius="4dp">
 
     <ListView
+        android:id="@+id/users_list"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_weight="1"
-        android:id="@+id/users_list"/>
+        android:layout_height="470dp"
+        android:layout_weight="1" />
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal">
+        android:orientation="vertical">
 
         <EditText
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
             android:id="@+id/add_name"
-            android:layout_weight="1"
-            android:hint="Name"/>
-
-        <EditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/add_desc"
             android:layout_weight="1"
-            android:hint="Description"/>
+            android:hint="Name" />
+
+        <EditText
+            android:id="@+id/add_desc"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:hint="Description" />
 
         <!--<EditText
             android:layout_width="match_parent"
@@ -94,17 +94,17 @@
             android:hint="Product"/>-->
 
         <EditText
+            android:id="@+id/add_link"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:id="@+id/add_link"
             android:layout_weight="1"
-            android:hint="Link"/>
+            android:hint="Link" />
 
         <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/add_data"
-            android:text="add"/>
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="add" />
 
     </LinearLayout>
 

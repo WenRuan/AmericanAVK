@@ -27,8 +27,11 @@ import android.graphics.RectF;
 import android.graphics.Typeface;
 import android.media.ImageReader.OnImageAvailableListener;
 import android.os.SystemClock;
+import android.util.Log;
 import android.util.Size;
 import android.util.TypedValue;
+import android.view.View;
+import android.widget.Button;
 import android.widget.Toast;
 
 import com.tensorflow.AVK.CS426.demo.customview.OverlayView;
@@ -183,7 +186,6 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
             final long startTime = SystemClock.uptimeMillis();
             final List<Classifier.Recognition> results = detector.recognizeImage(croppedBitmap);
             lastProcessingTimeMs = SystemClock.uptimeMillis() - startTime;
-
             cropCopyBitmap = Bitmap.createBitmap(croppedBitmap);
             final Canvas canvas = new Canvas(cropCopyBitmap);
             final Paint paint = new Paint();
@@ -197,7 +199,6 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                 minimumConfidence = MINIMUM_CONFIDENCE_TF_OD_API;
                 break;
             }
-
             final List<Classifier.Recognition> mappedRecognitions =
                 new LinkedList<Classifier.Recognition>();
 
@@ -212,7 +213,12 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                 mappedRecognitions.add(result);
               }
             }
-
+            final Button button = findViewById(R.id.button4);
+            button.setOnClickListener(new View.OnClickListener() {
+              public void onClick(View v) {
+                Log.d("Detect", results.get(0).getTitle());
+              }
+            });
             tracker.trackResults(mappedRecognitions, currTimestamp);
             trackingOverlay.postInvalidate();
 
