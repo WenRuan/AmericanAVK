@@ -65,7 +65,7 @@
         app:layout_constraintBottom_toTopOf="@+id/textView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:srcCompat="@drawable/avk1" />
+        app:srcCompat="@drawable/avk1transparent" />
 
     <Button
         android:id="@+id/button1"
