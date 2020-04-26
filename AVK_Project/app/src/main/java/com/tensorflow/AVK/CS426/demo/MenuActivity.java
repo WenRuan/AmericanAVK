@@ -9,7 +9,6 @@ import android.content.Intent;
 import android.content.pm.PackageManager; //For open camera permissions
 import android.os.Build;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.view.View;
 
 import org.tensorflow.lite.examples.demo.R;

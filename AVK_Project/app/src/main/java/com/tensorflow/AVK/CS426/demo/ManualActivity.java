@@ -22,6 +22,7 @@ public class ManualActivity extends AppCompatActivity {
         webview = (WebView) findViewById(R.id.webView);
         webview.setWebViewClient(new WebViewClient());
         webview.loadUrl(manualLink);
+
     }
 
 

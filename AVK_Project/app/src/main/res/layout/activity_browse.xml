@@ -54,7 +54,7 @@
     xmlns:card_view="http://schemas.android.com/apk/res-auto"
     android:orientation="vertical"
     android:gravity="center_horizontal"
-    tools:context="com.tensorflow.AVK.CS426.demo.BrowseActivity"
+    tools:context="com.tensorflow.AVK.CS426.demo.LegacyBrowseActivity"
 
     android:layout_gravity="center"
     android:layout_width="match_parent"

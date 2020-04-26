@@ -16,6 +16,7 @@
 
 package com.tensorflow.AVK.CS426.demo;
 
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
 import android.graphics.Canvas;
@@ -87,6 +88,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   private MultiBoxTracker tracker;
 
   private BorderedText borderedText;
+
 
   @Override
   public void onPreviewSizeChosen(final Size size, final int rotation) {
@@ -214,9 +216,14 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
               }
             }
             final Button button = findViewById(R.id.button4);
+            DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
             button.setOnClickListener(new View.OnClickListener() {
               public void onClick(View v) {
+                db.open();
                 Log.d("Detect", results.get(0).getTitle());
+                String manLink = db.getLink(results.get(0).getTitle());
+                openWebActivity(manLink);
+                db.close();
               }
             });
             tracker.trackResults(mappedRecognitions, currTimestamp);
@@ -261,5 +268,11 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   @Override
   protected void setNumThreads(final int numThreads) {
     runInBackground(() -> detector.setNumThreads(numThreads));
+  }
+
+  public void openWebActivity(String manual_link){
+    Intent intent = new Intent(this, ManualActivity.class);
+    intent.putExtra("MANUAL_LINK", manual_link);
+    startActivity(intent);
   }
 }
