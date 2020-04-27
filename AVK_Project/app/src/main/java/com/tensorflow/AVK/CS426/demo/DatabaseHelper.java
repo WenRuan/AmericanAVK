@@ -30,8 +30,8 @@ import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteAssetHelper {
 
-    private static String DB_NAME = "AVK.db";
-    private static final int DB_VERSION = 8;
+    public static String DB_NAME = "AVK.db";
+    public static final int DB_VERSION = 8;
 
 
     public DatabaseHelper(Context context) {

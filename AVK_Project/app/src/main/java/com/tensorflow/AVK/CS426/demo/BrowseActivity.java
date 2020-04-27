@@ -55,6 +55,7 @@ public class BrowseActivity extends AppCompatActivity {
         add_desc = findViewById(R.id.add_desc);
         add_link = findViewById(R.id.add_link);
         manual_list = findViewById(R.id.users_list);
+        add_button = findViewById(R.id.add_data);
 
         browseActivity();
 
@@ -66,6 +67,29 @@ public class BrowseActivity extends AppCompatActivity {
                 db.open();
                 String manLink = db.getLink(text);
                 openWebActivity(manLink);
+                db.close();
+            }
+        });
+
+        add_button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                String name = add_name.getText().toString();
+                String desc = add_desc.getText().toString();
+                //String prod = add_prod.getText().toString();
+                String links = add_link.getText().toString();
+                DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
+                db.open();
+                if(!name.equals("") && db.addToDatabase(name, desc, links)) {
+                    Toast.makeText(BrowseActivity.this, "Data added", Toast.LENGTH_SHORT).show();
+                    add_name.setText("");
+                    add_desc.setText("");
+                    add_link.setText("");
+                    browseActivity();
+                }
+                else {
+                    Toast.makeText(BrowseActivity.this, "Data not added", Toast.LENGTH_SHORT).show();
+                }
                 db.close();
             }
         });
@@ -92,5 +116,4 @@ public class BrowseActivity extends AppCompatActivity {
     }
 
 
-    //Allow adding to the database
 }

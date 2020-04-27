@@ -14,6 +14,7 @@
         android:layout_marginEnd="100dp"
         android:backgroundTint="@color/tfe_color_accent"
         android:clickable="true"
+        android:focusable="auto"
         app:layout_constraintBottom_toTopOf="@+id/webView"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/webView"

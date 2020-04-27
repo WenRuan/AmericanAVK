@@ -16,11 +16,14 @@
 
 package com.tensorflow.AVK.CS426.demo;
 
+import android.content.ContentValues;
 import android.content.Context;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteOpenHelper;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -85,6 +88,22 @@ public class DatabaseAccess {
         }
         return nameList;
     }
+
+    //Add Hydrant to the database
+    public boolean addToDatabase(String name, String manDescription, String manLink){
+        ContentValues contentValues = new ContentValues();
+        contentValues.put("model_name", name);
+        contentValues.put("description", manDescription);
+        contentValues.put("link", manLink);
+        long results = db.insert("manuals",null,contentValues);
+        if(results == -1){
+            return false;
+        }
+        else{
+            return true;
+        }
+    }
+
 
 
 }

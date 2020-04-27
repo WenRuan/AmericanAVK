@@ -17,17 +17,22 @@
 package com.tensorflow.AVK.CS426.demo;
 
 import android.os.Bundle;
+import android.view.View;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
+import android.widget.Button;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.tensorflow.lite.examples.demo.R;
 
 public class ManualActivity extends AppCompatActivity {
 
     private WebView webview;
+    FloatingActionButton floatingButton;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -39,6 +44,15 @@ public class ManualActivity extends AppCompatActivity {
         webview.setWebViewClient(new WebViewClient());
         webview.loadUrl(manualLink);
 
+        floatingButton = findViewById(R.id.floatingActionButton2);
+
+        floatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                onBackPressed();
+            }
+
+        });
     }
 
 
