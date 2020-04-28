@@ -1,0 +1,4 @@
+#Mon Apr 13 15:14:20 PDT 2020
+base.0=/Users/bonbon/git/AmericanAVK/cs426demo/app/build/intermediates/dex/debug/out/classes.dex
+path.0=classes.dex
+renamed.0=classes.dex
