@@ -50,6 +50,7 @@ public class DatabaseAccess {
             instance=new DatabaseAccess(context);
         }
         return instance;
+
     }
 
 

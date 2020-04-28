@@ -28,14 +28,24 @@ import android.widget.Toast;
 
 import org.tensorflow.lite.examples.demo.R;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class MainActivity extends AppCompatActivity {
+
+    private DatabaseHelper mDBHelper;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
+        mDBHelper = new DatabaseHelper(this);
+        try {
+            mDBHelper.updateDataBase();
+        } catch (IOException mIOException) {
+            throw new Error("UnableToUpdateDatabase");
+        }
     }
 
     public void loginScreen(View view) {
