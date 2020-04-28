@@ -101,6 +101,17 @@ public class DatabaseAccess {
         return latitudeList;
     }
 
+    public ArrayList<String> getHydrants(){
+        cursor = db.rawQuery("select model_name from hydrant", new String[]{});
+        ArrayList<String> hydrantList = new ArrayList<String>();
+        while(cursor.moveToNext())
+        {
+            String hydrant = cursor.getString(0);
+            hydrantList.add(hydrant);
+        }
+        return hydrantList;
+    }
+
     public ArrayList<Double> getLongitude(){
         cursor = db.rawQuery("select longitude from hydrant", new String[]{});
         ArrayList<Double> longitudeList = new ArrayList<Double>();
