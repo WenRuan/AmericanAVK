@@ -57,6 +57,8 @@ import com.google.android.gms.tasks.Task;
 
 import org.tensorflow.lite.examples.demo.R;
 
+import java.lang.reflect.Array;
+import java.util.ArrayList;
 import java.util.List;
 
 public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
@@ -191,24 +193,43 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in FIRE HYDRANT and move the camera
-        LatLng[] hydrantList = new LatLng[20];
-        hydrantList[0] = new LatLng(39.544957, -119.816864);
-        hydrantList[1] = new LatLng(39.543435, -119.816692);
-        hydrantList[2] = new LatLng(39.545520, -119.816005);
-        hydrantList[3] = new LatLng(39.542773, -119.816177);
-        hydrantList[4] = new LatLng(39.544361, -119.818580);
-        hydrantList[5] = new LatLng(39.544228, -119.818580);
-        hydrantList[6] = new LatLng(39.543467, -119.816563 );
-        hydrantList[7] = new LatLng(39.542639, -119.814503);
-        hydrantList[8] = new LatLng(39.545667, -119.814784);
-        hydrantList[9] = new LatLng(39.545236, -119.813926);
-        hydrantList[10] = new LatLng(39.544044, -119.813883);
+        //Opens database file for latitude and longitude values
+        DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
+        db.open();
+
+        //Arrays to hold values
+        ArrayList<Double> latitudeList = new ArrayList<>();
+        ArrayList<Double> longitudeList = new ArrayList<>();
+        latitudeList = db.getLatitude();
+        longitudeList = db.getLongitude();
+
+
+        //Loop through all hydrants in database and add them to the map
+        LatLng[] hydrantLocation = new LatLng[100];
+        for(int index = 0; index < latitudeList.size(); index++){
+            hydrantLocation[index] = new LatLng(longitudeList.get(index), latitudeList.get(index));
+            /**BTW Our latitude and longitude in the database is swapped**/
+        }
+
+
+//        // Add a marker in FIRE HYDRANT and move the camera
+//        LatLng[] hydrantList = new LatLng[20];
+//        hydrantList[0] = new LatLng(39.544957, -119.816864);
+//        hydrantList[1] = new LatLng(39.543435, -119.816692);
+//        hydrantList[2] = new LatLng(39.545520, -119.816005);
+//        hydrantList[3] = new LatLng(39.542773, -119.816177);
+//        hydrantList[4] = new LatLng(39.544361, -119.818580);
+//        hydrantList[5] = new LatLng(39.544228, -119.818580);
+//        hydrantList[6] = new LatLng(39.543467, -119.816563 );
+//        hydrantList[7] = new LatLng(39.542639, -119.814503);
+//        hydrantList[8] = new LatLng(39.545667, -119.814784);
+//        hydrantList[9] = new LatLng(39.545236, -119.813926);
+//        hydrantList[10] = new LatLng(39.544044, -119.813883);
 
 
         for(int i = 0; i < 10; i++) {
             mMap.addMarker(new MarkerOptions()
-                    .position(hydrantList[i])
+                    .position(hydrantLocation[i])
                     .title("Possible Fire Hydrant"));
         }
 

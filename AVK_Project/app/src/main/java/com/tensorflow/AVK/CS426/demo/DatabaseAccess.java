@@ -24,6 +24,7 @@ import android.database.sqlite.SQLiteOpenHelper;
 
 import java.io.File;
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -87,6 +88,28 @@ public class DatabaseAccess {
             nameList.add(name);
         }
         return nameList;
+    }
+
+    public ArrayList<Double> getLatitude(){
+        cursor = db.rawQuery("select latitude from hydrant", new String[]{});
+        ArrayList<Double> latitudeList = new ArrayList<Double>();
+        while(cursor.moveToNext())
+        {
+            String latitude = cursor.getString(0);
+            latitudeList.add(Double.parseDouble(latitude));
+        }
+        return latitudeList;
+    }
+
+    public ArrayList<Double> getLongitude(){
+        cursor = db.rawQuery("select longitude from hydrant", new String[]{});
+        ArrayList<Double> longitudeList = new ArrayList<Double>();
+        while(cursor.moveToNext())
+        {
+            String longitude = cursor.getString(0);
+            longitudeList.add(Double.parseDouble(longitude));
+        }
+        return longitudeList;
     }
 
     //Add Hydrant to the database
