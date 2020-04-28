@@ -67,8 +67,6 @@ public class MenuActivity extends AppCompatActivity {
         Intent intent = new Intent(this, BrowseActivity.class);
         startActivity(intent);
     }
-    //History
-    //
     //Settings
     public void settingsScreen(View view) {
         Intent intent = new Intent(this, SettingsActivity.class);
