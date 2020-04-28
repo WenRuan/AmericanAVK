@@ -50,6 +50,8 @@ import java.util.List;
 
 import org.tensorflow.lite.examples.demo.R;
 
+import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.NULL;
+
 /**
  * An activity that uses a TensorFlowMultiBoxDetector and ObjectTracker to detect and then track
  * objects.
@@ -66,7 +68,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   // Minimum detection confidence to track a detection.
   private static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.5f;
   private static final boolean MAINTAIN_ASPECT = false;
-  private static final Size DESIRED_PREVIEW_SIZE = new Size(640, 480);
+  private static final Size DESIRED_PREVIEW_SIZE = new Size(1024, 720);
   private static final boolean SAVE_PREVIEW_BITMAP = false;
   private static final float TEXT_SIZE_DIP = 10;
   OverlayView trackingOverlay;
@@ -216,14 +218,26 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                 mappedRecognitions.add(result);
               }
             }
+
+            //Capture current detection object
             final Button button = findViewById(R.id.button4);
+
+            //Uses database to match the object names
             DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
             button.setOnClickListener(new View.OnClickListener() {
               public void onClick(View v) {
                 db.open();
                 Log.d("Detect", results.get(0).getTitle());
-                String manLink = db.getLink(results.get(0).getTitle());
-                openWebActivity(manLink);
+                String manLink;
+                manLink = db.getLink(results.get(0).getTitle());
+                if(manLink.contains("http"))
+                {
+                  openWebActivity(manLink);
+                  manLink = "none";
+                }
+                else{
+                  Toast.makeText(getBaseContext(), "Hydrant does not exist", Toast.LENGTH_SHORT).show();
+                }
                 db.close();
               }
             });

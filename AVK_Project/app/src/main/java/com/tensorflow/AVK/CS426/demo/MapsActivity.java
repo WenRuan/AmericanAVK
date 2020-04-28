@@ -211,6 +211,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             /**BTW Our latitude and longitude in the database is swapped**/
         }
 
+        db.close();
 
 //        // Add a marker in FIRE HYDRANT and move the camera
 //        LatLng[] hydrantList = new LatLng[20];

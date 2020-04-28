@@ -112,6 +112,28 @@ public class DatabaseAccess {
         return longitudeList;
     }
 
+    public ArrayList<String> getUserNames(){
+        cursor = db.rawQuery("select UserID from Users", new String[]{});
+        ArrayList<String> userList= new ArrayList<>();
+        while (cursor.moveToNext())
+        {
+            String user = cursor.getString(0);
+            userList.add(user);
+        }
+        return userList;
+    }
+
+    public ArrayList<String> getPasswords(){
+        cursor = db.rawQuery("select Password from Users", new String[]{});
+        ArrayList<String> pwList= new ArrayList<>();
+        while (cursor.moveToNext())
+        {
+            String pass = cursor.getString(0);
+            pwList.add(pass);
+        }
+        return pwList;
+    }
+
     //Add Hydrant to the database
     public boolean addToDatabase(String name, String manDescription, String manLink){
         ContentValues contentValues = new ContentValues();
