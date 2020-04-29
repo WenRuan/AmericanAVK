@@ -92,7 +92,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         mapFragment.getMapAsync(this);
 
         // Initialize userLocation until it can be later updated
-        mUserLocation = new LatLng(0, 0);
+        mUserLocation = new LatLng(39.5442, -119.8164);
 
         // Set up user tracking stuff
         mFusedLocationProviderClient = LocationServices.getFusedLocationProviderClient(this);
@@ -228,7 +228,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
                 .fillColor(CIRCLE_FILL_COLOR)
                 .strokeColor(Color.WHITE);
 
+
         mapCircle = mMap.addCircle(drawCircle);
+
         mMap.moveCamera(CameraUpdateFactory.zoomTo(17));
         mMap.moveCamera(CameraUpdateFactory.newLatLng(mUserLocation));
     }
@@ -329,10 +331,5 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mapCircle.remove();
             mapCircle = mMap.addCircle(drawCircle);
         }
-        mMap.animateCamera(
-                CameraUpdateFactory.newLatLng(mUserLocation),
-                2000,
-                null
-        );
     }
 }
