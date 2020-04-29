@@ -41,5 +41,8 @@ If you explicitly want to download the model, you can download from **[here](htt
 _Please do not delete the assets folder content_. If you explicitly deleted the files, then please choose *Build*->*Rebuild* from menu to re-download the deleted model files into assets folder.
 
 ### Icons
+_Credits for the usage of the icons are listed below._
+
 The 'Browse', 'History', and 'Settings' icons are all made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+
 The 'Hydrant' icon is made <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
