@@ -230,7 +230,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
                 Log.d("Detect", results.get(0).getTitle());
                 String manLink;
                 manLink = db.getLink(results.get(0).getTitle());
-                if(manLink.contains("http"))
+                if(manLink.contains("http") && !results.get(0).getTitle().isEmpty())
                 {
                   openWebActivity(manLink);
                   manLink = "none";
