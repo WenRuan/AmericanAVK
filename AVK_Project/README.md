@@ -39,3 +39,7 @@ If you explicitly want to download the model, you can download from **[here](htt
 
 ### Additional Note
 _Please do not delete the assets folder content_. If you explicitly deleted the files, then please choose *Build*->*Rebuild* from menu to re-download the deleted model files into assets folder.
+
+-- The icons that were used in this app and the credits are mentioned below --
+The 'Browse', 'History', and 'Settings' icons are all made by <a href="https://www.flaticon.com/authors/freepik" title="Freepik">Freepik</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
+The 'Hydrant' icon is made <a href="https://www.flaticon.com/authors/xnimrodx" title="xnimrodx">xnimrodx</a> from <a href="https://www.flaticon.com/" title="Flaticon"> www.flaticon.com</a>
