@@ -1,111 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<!--<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:background="@color/tfe_color_accent"
-    tools:context="com.tensorflow.AVK.CS426.demo.MenuActivity">
-
-    <Button
-        android:id="@+id/ScanHydrantbutton"
-        android:layout_width="146dp"
-        android:layout_height="73dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="4dp"
-        android:onClick="openCamera"
-        android:text="Scan Hydrant"
-        android:textAlignment="center"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toTopOf="@+id/GPSbutton"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.502"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.636" />
-
-    <Button
-        android:id="@+id/GPSbutton"
-        android:layout_width="144dp"
-        android:layout_height="76dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="mapsScreen"
-        android:text="Hydrant Map"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.591" />
-
-    <Button
-        android:id="@+id/Browsebutton"
-        android:layout_width="144dp"
-        android:layout_height="72dp"
-        android:layout_marginStart="8dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="8dp"
-        android:layout_marginBottom="8dp"
-        android:onClick="browseScreen"
-        android:text="Browse All"
-        android:textSize="18sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/GPSbutton"
-        app:layout_constraintVertical_bias="0.685" />
-
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/floatingActionButton"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="327dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="24dp"
-        android:layout_marginBottom="639dp"
-        android:clickable="true"
-        android:onClick="settingsScreen"
-        app:backgroundTint="@color/design_default_color_primary"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_settings" />
-
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="74dp"
-        android:layout_height="86dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.498"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.155"
-        app:srcCompat="@drawable/ic_hydrant" />
-
-    <ImageView
-        android:id="@+id/imageView5"
-        android:layout_width="86dp"
-        android:layout_height="87dp"
-        android:layout_marginTop="296dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.516"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_map" />
-
-</androidx.constraintlayout.widget.ConstraintLayout>-->
-
-
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
@@ -153,7 +47,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:cardElevation="8dp"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="8dp"
+            android:id="@+id/Browsebutton"
+            android:onClick="browseScreen">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
@@ -169,14 +65,13 @@
                     android:src="@drawable/ic_browsing" />
 
                 <Button
-                    android:id="@+id/Browsebutton"
-                    android:onClick="browseScreen"
                     android:text="Browse All"
                     android:textSize="18sp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:backgroundTint="@android:color/white"
-                    android:stateListAnimator="@null"/>
+                    android:stateListAnimator="@null"
+                    android:onClick="browseScreen"/>
 
 
 
@@ -195,7 +90,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:cardElevation="8dp"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="8dp"
+            android:id="@+id/GPSbutton"
+            android:onClick="mapsScreen">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
@@ -211,14 +108,13 @@
                     android:src="@drawable/ic_map" />
 
                 <Button
-                    android:id="@+id/GPSbutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="mapsScreen"
                     android:text="Hydrant Map"
                     android:textSize="18sp"
                     android:backgroundTint="@android:color/white"
-                    android:stateListAnimator="@null"/>
+                    android:stateListAnimator="@null"
+                    android:onClick="mapsScreen"/>
 
 
 
@@ -237,7 +133,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:cardElevation="8dp"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="8dp"
+            android:id="@+id/ScanHydrantbutton"
+            android:onClick="openCamera">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
@@ -253,15 +151,14 @@
                     android:src="@drawable/ic_hydrant" />
 
                 <Button
-                    android:id="@+id/ScanHydrantbutton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="openCamera"
                     android:text="Scan Hydrant"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:backgroundTint="@android:color/white"
-                    android:stateListAnimator="@null"/>
+                    android:stateListAnimator="@null"
+                    android:onClick="openCamera"/>
 
 
 
@@ -280,7 +177,9 @@
             android:layout_marginLeft="16dp"
             android:layout_marginRight="16dp"
             app:cardElevation="8dp"
-            app:cardCornerRadius="8dp">
+            app:cardCornerRadius="8dp"
+            android:id="@+id/floatingActionButton"
+            android:onClick="settingsScreen">
 
             <LinearLayout
                 android:layout_gravity="center_horizontal|center_vertical"
@@ -296,15 +195,15 @@
                     android:src="@drawable/ic_gears" />
 
                 <Button
-                    android:id="@+id/floatingActionButton"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:onClick="settingsScreen"
                     android:text="Settings"
                     android:textAlignment="center"
                     android:textSize="18sp"
                     android:backgroundTint="@android:color/white"
-                    android:stateListAnimator="@null"/>
+                    android:stateListAnimator="@null"
+                    android:layout_gravity="center_horizontal"
+                    android:onClick="settingsScreen"/>
 
 
 

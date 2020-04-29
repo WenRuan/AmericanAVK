@@ -79,6 +79,7 @@ public class DatabaseAccess {
     }
 
 
+    // grabs the model name of the hydrant by using a select statement from the manuals table
     public ArrayList<String> getModelName(){
         cursor = db.rawQuery("select model_name from manuals", new String[]{});
         StringBuffer buffer = new StringBuffer();
@@ -91,6 +92,7 @@ public class DatabaseAccess {
         return nameList;
     }
 
+    // grabs the latitude of the hydrant from the hydrants table
     public ArrayList<Double> getLatitude(){
         cursor = db.rawQuery("select latitude from hydrant", new String[]{});
         ArrayList<Double> latitudeList = new ArrayList<Double>();
@@ -102,6 +104,7 @@ public class DatabaseAccess {
         return latitudeList;
     }
 
+    // grabs all hydrants from the hydrant table
     public ArrayList<String> getHydrants(){
         cursor = db.rawQuery("select model_name from hydrant", new String[]{});
         ArrayList<String> hydrantList = new ArrayList<String>();
@@ -113,6 +116,7 @@ public class DatabaseAccess {
         return hydrantList;
     }
 
+    // grabs the longitutde of the hydrdant from the hydrant table
     public ArrayList<Double> getLongitude(){
         cursor = db.rawQuery("select longitude from hydrant", new String[]{});
         ArrayList<Double> longitudeList = new ArrayList<Double>();
@@ -124,6 +128,7 @@ public class DatabaseAccess {
         return longitudeList;
     }
 
+    // for the login information, this checks if the userid is an existing row within the table
     public ArrayList<String> getUserNames(){
         cursor = db.rawQuery("select UserID from Users", new String[]{});
         ArrayList<String> userList= new ArrayList<>();
@@ -135,6 +140,7 @@ public class DatabaseAccess {
         return userList;
     }
 
+    // for the login information, ths checks if the password is a valid password within the table
     public ArrayList<String> getPasswords(){
         cursor = db.rawQuery("select Password from Users", new String[]{});
         ArrayList<String> pwList= new ArrayList<>();

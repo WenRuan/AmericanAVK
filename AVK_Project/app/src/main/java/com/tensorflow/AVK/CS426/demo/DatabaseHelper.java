@@ -30,6 +30,7 @@ import java.io.OutputStream;
 
 public class DatabaseHelper extends SQLiteAssetHelper {
 
+        // connect to database in the project folder
     public static String DB_NAME = "AVK.db";
     public static final int DB_VERSION = 8;
     public static String DB_PATH = "C:\\Users\\slimp\\Desktop\\AVK_Project\\AmericanAVK\\AVK_Project\\app\\src\\main\\assets\\databases\\AVK.db";
@@ -45,6 +46,8 @@ public class DatabaseHelper extends SQLiteAssetHelper {
 
     }
 
+        // updates the database
+        // function: if a database with the exact pathname, etc., exist, then delete it from the app. create a new database with the new rows
     public void updateDataBase() throws IOException {
         if (mNeedUpdate) {
             File dbFile = new File(DB_PATH + DB_NAME);
@@ -57,6 +60,7 @@ public class DatabaseHelper extends SQLiteAssetHelper {
         }
     }
 
+        // function: checks if database exists in the system
     private boolean checkDataBase() {
         File dbFile = new File(DB_PATH + DB_NAME);
         return dbFile.exists();
