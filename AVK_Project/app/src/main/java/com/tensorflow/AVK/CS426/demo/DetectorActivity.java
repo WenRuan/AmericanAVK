@@ -56,6 +56,8 @@ import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.N
  * An activity that uses a TensorFlowMultiBoxDetector and ObjectTracker to detect and then track
  * objects.
  */
+
+/** configurations for tensorflow model detection**/
 public class DetectorActivity extends CameraActivity implements OnImageAvailableListener {
   private static final Logger LOGGER = new Logger();
 
@@ -92,6 +94,9 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
   private BorderedText borderedText;
 
+
+  /**Sets up the tracking overlay by taking in current orientation.
+   * Uses the tracking overlay in layouts**/
 
   @Override
   public void onPreviewSizeChosen(final Size size, final int rotation) {
@@ -158,6 +163,8 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     tracker.setFrameConfiguration(previewWidth, previewHeight, sensorOrientation);
   }
 
+
+  //Takes the current image from the camera, this runs while the camera is on.
   @Override
   protected void processImage() {
     ++timestamp;
@@ -198,17 +205,22 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
             paint.setStyle(Style.STROKE);
             paint.setStrokeWidth(2.0f);
 
+            //Making sure the object is not a false read by setting the minimum confidence value
+            //I've set the minimum to be 50%
             float minimumConfidence = MINIMUM_CONFIDENCE_TF_OD_API;
             switch (MODE) {
               case TF_OD_API:
                 minimumConfidence = MINIMUM_CONFIDENCE_TF_OD_API;
                 break;
             }
+            //Possible detections will be stored into a Classifier List
             final List<Classifier.Recognition> mappedRecognitions =
                 new LinkedList<Classifier.Recognition>();
 
+            //The classifier class will provide a Rectangular coordinate location to match the results
             for (final Classifier.Recognition result : results) {
               final RectF location = result.getLocation();
+              //Checking the confidence level before displaying boxes
               if (location != null && result.getConfidence() >= minimumConfidence) {
                 canvas.drawRect(location, paint);
 
@@ -224,12 +236,15 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
             //Uses database to match the object names
             DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
+            //Capture button on detection screen
             button.setOnClickListener(new View.OnClickListener() {
               public void onClick(View v) {
                 db.open();
                 Log.d("Detect", results.get(0).getTitle());
                 String manLink;
                 manLink = db.getLink(results.get(0).getTitle());
+                //Because the results do not clear and this function is always running
+                //We have to make sure the onClick does not trigger a previous scan result
                 if(manLink.contains("http") && !results.get(0).getTitle().isEmpty())
                 {
                   openWebActivity(manLink);
@@ -246,6 +261,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
 
             computingDetection = false;
 
+            //Bottom statistics for the current detection.
             runOnUiThread(
                 new Runnable() {
                   @Override
@@ -258,7 +274,12 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
           }
         });
   }
-
+  public void openWebActivity(String manual_link){
+    Intent intent = new Intent(this, ManualActivity.class);
+    intent.putExtra("MANUAL_LINK", manual_link);
+    startActivity(intent);
+  }
+  //Returns the runOnUIThread info
   @Override
   protected int getLayoutId() {
     return R.layout.tfe_od_camera_connection_fragment_tracking;
@@ -285,9 +306,5 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
     runInBackground(() -> detector.setNumThreads(numThreads));
   }
 
-  public void openWebActivity(String manual_link){
-    Intent intent = new Intent(this, ManualActivity.class);
-    intent.putExtra("MANUAL_LINK", manual_link);
-    startActivity(intent);
-  }
+
 }
