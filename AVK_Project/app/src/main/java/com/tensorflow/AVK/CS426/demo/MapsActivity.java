@@ -384,11 +384,14 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.d("test", hydrantList.get(index) + " " + index);
             if(marker.getTitle().equals(hydrantList.get(index)))
             {
+                //Get description of hydrant
+                String desc = db.getDescription().get(index);
+
                 //Get link of that hydrant
                 String link = db.getLink(hydrantList.get(index));
                 DialogFragment dialog = new MarkerOnClickDialog(
                         marker.getTitle(),
-                        "This is a hydrant.",
+                        desc,
                         link,
                         this
                 );
