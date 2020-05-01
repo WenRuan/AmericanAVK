@@ -34,6 +34,7 @@ import android.os.PersistableBundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.google.android.gms.common.api.ResolvableApiException;
 import com.google.android.gms.location.FusedLocationProviderClient;
@@ -56,6 +57,7 @@ import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.tensorflow.lite.examples.demo.R;
 
@@ -75,6 +77,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
     // Stuff for maps
     private GoogleMap mMap;
+
+    // Stuff for floating action button
+    FloatingActionButton floatingButton;
 
     // Tracking user location
     private LatLng mUserLocation;
@@ -130,6 +135,17 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         } else {
             canUpdateLocation = true;
         }
+
+
+        floatingButton = findViewById(R.id.floatingActionButton3);
+
+        floatingButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                onRefresh();
+            }
+
+        });
 
         updateValuesFromBundle(savedInstanceState);
     }
@@ -366,5 +382,9 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         Intent intent = new Intent(this, ManualActivity.class);
         intent.putExtra("MANUAL_LINK", manual_link);
         startActivity(intent);
+    }
+
+    public void onRefresh() {
+        mMap.animateCamera(CameraUpdateFactory.newLatLng(mUserLocation));
     }
 }
