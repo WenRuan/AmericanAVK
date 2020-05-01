@@ -31,6 +31,7 @@ import android.location.Location;
 import android.os.Bundle;
 import android.os.Looper;
 import android.os.PersistableBundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 
@@ -50,6 +51,7 @@ import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.Circle;
 import com.google.android.gms.maps.model.CircleOptions;
 import com.google.android.gms.maps.model.LatLng;
+import com.google.android.gms.maps.model.Marker;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -61,7 +63,7 @@ import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.List;
 
-public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class MapsActivity extends AppCompatActivity implements OnMapReadyCallback, GoogleMap.OnMarkerClickListener {
 
     // STATUS CODES
     static final int PERMISSION_LOCATION_REQUEST_CODE = 100;
@@ -192,6 +194,7 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     @Override
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
+        List<Marker> marker = new ArrayList<Marker>();
 
         //Opens database file for latitude and longitude values
         DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
@@ -215,12 +218,13 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
 
         db.close();
 
+        //Puts markets of hydrants all over the map
+        mMap.setOnMarkerClickListener(this);
         for(int index = 0; index < hydrantList.size(); index++)
         {
-            mMap.addMarker(new MarkerOptions().position(hydrantLocation[index]).title(hydrantList.get(index)));
+            //adding into a list of markers to add onClicks
+            marker.add(mMap.addMarker(new MarkerOptions().position(hydrantLocation[index]).title(hydrantList.get(index))));
         }
-
-
 
         drawCircle = new CircleOptions()
                 .center(mUserLocation)
@@ -331,5 +335,36 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             mapCircle.remove();
             mapCircle = mMap.addCircle(drawCircle);
         }
+    }
+
+    @Override
+    public boolean onMarkerClick(Marker marker) {
+        Log.d("testing", "Its working sort of");
+        ArrayList<String> hydrantList = new ArrayList<>();
+        DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
+        db.open();
+        hydrantList = db.getHydrants();
+        for(int index = 0; index < hydrantList.size(); index++)
+        {
+            Log.d("test", marker.getTitle() + " Marker");
+            Log.d("test", hydrantList.get(index) + " " + index);
+            if(marker.getTitle().equals(hydrantList.get(index)))
+            {
+                Log.d("test", "222222222222222222222");
+                //Get link of that hydrant
+                String link = db.getLink(hydrantList.get(index));
+                openWebActivity(link);
+                db.close();
+                return true;
+            }
+        }
+        db.close();
+        return false;
+    }
+
+    public void openWebActivity(String manual_link){
+        Intent intent = new Intent(this, ManualActivity.class);
+        intent.putExtra("MANUAL_LINK", manual_link);
+        startActivity(intent);
     }
 }
