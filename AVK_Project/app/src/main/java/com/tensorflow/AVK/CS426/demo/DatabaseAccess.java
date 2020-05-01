@@ -152,6 +152,27 @@ public class DatabaseAccess {
         return pwList;
     }
 
+    public ArrayList<HydrantInfo> getInfo(){
+        ArrayList<String> titles = new ArrayList<>();
+        ArrayList<String> description = new ArrayList<>();
+        ArrayList<HydrantInfo> hydrantInfo= new ArrayList<>();
+
+        titles = getUserNames();
+        cursor = db.rawQuery("select descriptions from manuals", new String[]{});
+        while (cursor.moveToNext())
+        {
+            String desc = cursor.getString(0);
+            description.add(desc);
+        }
+
+        for(int index = 0; index < titles.size(); index++)
+        {
+            hydrantInfo.get(index).setTitle(titles.get(index));
+            hydrantInfo.get(index).setDescription(description.get(index));
+        }
+        return hydrantInfo;
+    }
+
     //Add Hydrant to the database
     public boolean addToDatabase(String name, String manDescription, String manLink){
         ContentValues contentValues = new ContentValues();

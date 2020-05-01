@@ -353,6 +353,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
         }
     }
 
+
+    /*****************************Extra features************************************/
     @Override
     public boolean onMarkerClick(Marker marker) {
         Log.d("testing", "Its working sort of");
@@ -366,7 +368,6 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             Log.d("test", hydrantList.get(index) + " " + index);
             if(marker.getTitle().equals(hydrantList.get(index)))
             {
-                Log.d("test", "222222222222222222222");
                 //Get link of that hydrant
                 String link = db.getLink(hydrantList.get(index));
                 openWebActivity(link);
