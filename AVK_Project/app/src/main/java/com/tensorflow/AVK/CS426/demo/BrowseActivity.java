@@ -18,6 +18,7 @@ package com.tensorflow.AVK.CS426.demo;
 import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
@@ -44,6 +45,7 @@ public class BrowseActivity extends AppCompatActivity {
 
     ArrayList<String> listItem;
     ArrayAdapter adapter;
+    MyCustAdapter myAdapter;
 
 
     @Override
@@ -63,6 +65,8 @@ public class BrowseActivity extends AppCompatActivity {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int i, long l) {
                 String text = manual_list.getItemAtPosition(i).toString();
+                Log.d("testing",text);
+                Log.d("testing", manual_list.getItemAtPosition(i).toString());
                 DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
                 db.open();
                 String manLink = db.getLink(text);
@@ -101,13 +105,36 @@ public class BrowseActivity extends AppCompatActivity {
 
         DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
         db.open();
-        ArrayList<String> nameList = db.getModelName();
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, nameList);
-        manual_list.setAdapter(adapter);
-
+        ArrayList<String> modelList = db.getModelName();
         db.close();
+        db.open();
+        ArrayList<String> descList = db.getDescription();
+        db.close();
+        ArrayList<HydrantInfo> hydrantList = new ArrayList<>();
+
+        for(int index = 0; index < modelList.size(); index++)
+        {
+            Log.d("testing", "Its working!!!");
+            HydrantInfo hydrant = new HydrantInfo(modelList.get(index), descList.get(index));
+            hydrantList.add(hydrant);
+        }
+
+        myAdapter = new MyCustAdapter(this, hydrantList);
+        manual_list.setAdapter(myAdapter);
 
     }
+
+//    public void browseActivity() {
+//
+//        DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
+//        db.open();
+//        ArrayList<String> nameList = db.getModelName();
+//        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1, nameList);
+//        manual_list.setAdapter(adapter);
+//
+//        db.close();
+//
+//    }
 
     public void openWebActivity(String manual_link){
         Intent intent = new Intent(this, ManualActivity.class);

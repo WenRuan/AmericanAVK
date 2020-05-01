@@ -25,4 +25,9 @@ public class HydrantInfo {
     public String getDescription() {
         return description;
     }
+
+    public void addInfo(String title, String desc){
+        this.title = title;
+        this.description = desc;
+    }
 }
