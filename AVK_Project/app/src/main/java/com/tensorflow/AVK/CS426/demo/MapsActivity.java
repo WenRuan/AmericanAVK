@@ -79,7 +79,8 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
     private GoogleMap mMap;
 
     // Stuff for floating action button
-    FloatingActionButton floatingButton;
+    FloatingActionButton floatingButton1;
+    FloatingActionButton floatingButton2;
 
     // Tracking user location
     private LatLng mUserLocation;
@@ -136,18 +137,33 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             canUpdateLocation = true;
         }
 
+        //Refresh Button
+        floatingButton1 = findViewById(R.id.floatingActionButton1);
 
-        floatingButton = findViewById(R.id.floatingActionButton3);
-
-        floatingButton.setOnClickListener(new View.OnClickListener() {
+        floatingButton1.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view){
                 onRefresh();
             }
+        });
 
+        //Browse Button
+        floatingButton2 = findViewById(R.id.floatingActionButton2);
+
+        floatingButton2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view){
+                browseScreen(view);
+            }
         });
 
         updateValuesFromBundle(savedInstanceState);
+    }
+
+    //Browse All
+    public void browseScreen(View view) {
+        Intent intent = new Intent(this, BrowseActivity.class);
+        startActivity(intent);
     }
 
     @Override
