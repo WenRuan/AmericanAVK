@@ -386,19 +386,19 @@ public class MapsActivity extends AppCompatActivity implements OnMapReadyCallbac
             {
                 //Get link of that hydrant
                 String link = db.getLink(hydrantList.get(index));
-                openWebActivity(link);
+                DialogFragment dialog = new MarkerOnClickDialog(
+                        marker.getTitle(),
+                        "This is a hydrant.",
+                        link,
+                        this
+                );
+                dialog.show(getSupportFragmentManager(), "MarkerOnClickDialog");
                 db.close();
                 return true;
             }
         }
         db.close();
         return false;
-    }
-
-    public void openWebActivity(String manual_link){
-        Intent intent = new Intent(this, ManualActivity.class);
-        intent.putExtra("MANUAL_LINK", manual_link);
-        startActivity(intent);
     }
 
     public void onRefresh() {
