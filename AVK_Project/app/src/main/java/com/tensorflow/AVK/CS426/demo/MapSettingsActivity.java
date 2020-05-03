@@ -13,19 +13,55 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-
+/**
+ * @file MapSettingsActivity.java
+ * 
+ * @brief Implementation for the appbar of the map. Currently disabled
+ * 
+ * @details Implements the appbar, which has a settings button. Currently disabled
+ * 
+ * @version 1.00
+ *          1 May 2020
+ *          Initial implementation of the MapSettings.java
+ *
+ * @note Connected with the MapsActivity
+ */
+ //
+ // Packages ************************************************
+ //
 package com.tensorflow.AVK.CS426.demo;
-
+// Imports **************************************************
+// android imports
 import android.os.Bundle;
-
+// androidx imports
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.preference.PreferenceFragmentCompat;
-
+// TensorFlow imports
 import org.tensorflow.lite.examples.demo.R;
-
+//
+// Class definition **********************************************
+//
 public class MapSettingsActivity extends AppCompatActivity {
-
+    // 
+    // Class variables *******************************************
+    // 
+    /// NONE
+    //
+    // Class functions *******************************************
+    // 
+    /**
+    * @brief Function creates the action bar for the maps screen
+    *
+    * @details Function creates an appbar based on the settings activity xml
+    *
+    * @pre savedInstanceState is the cache of the state of the application
+    * 
+    * @post An appbar is created from the settings activity
+    *
+    * @param[in] savedInstanceState
+    *            holds the cached of the state of the application
+    */
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

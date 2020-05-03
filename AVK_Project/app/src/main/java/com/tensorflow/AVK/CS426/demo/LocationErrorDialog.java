@@ -14,20 +14,58 @@
  * limitations under the License.
  */
 
+/**
+ * @file LocationErrorDialog.java
+ * 
+ * @brief Implementation for the page that displays the dialog for a location error
+ * 
+ * @details Implements everything needed to display an error dialog in case of error
+ * 
+ * @version 1.00
+ *          1 May 2020
+ *          Initial implementation of the LocationErrorDialog.java
+ *
+ * @note Connected with the MapsActivity
+ */
+ //
+ // Packages ************************************************
+ //
 package com.tensorflow.AVK.CS426.demo;
-
+// Imports **************************************************
+// android imports 
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
 import android.os.Bundle;
-
+// androidx imports
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
-
+// TensorFlow import
 import org.tensorflow.lite.examples.demo.R;
-
+//
+// Class definition **********************************************
+//
 public class LocationErrorDialog extends DialogFragment {
+    // 
+    // Class variables *******************************************
+    // 
+    /// NONE
+    //
+    // Class functions *******************************************
+    // 
+    /**
+    * @brief Function creates a dialog for a location error dialog
+    *
+    * @details if the user does not allow permissions, this dialog box will be displayed
+    *
+    * @pre savedInstanceState is the cache of the state of the application
+    * 
+    * @post A location error dialog is displayed
+    *
+    * @param[in] savedInstanceState
+    *            holds the cached of the state of the application
+    */
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
