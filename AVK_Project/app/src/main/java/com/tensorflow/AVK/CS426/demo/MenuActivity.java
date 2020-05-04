@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+/**
+ * @file MenuActivity.java
+ *
+ * @brief The main menu of the application where all main functions can be accessed.
+ *
+ */
+
 package com.tensorflow.AVK.CS426.demo;
 
 import androidx.annotation.RequiresApi;

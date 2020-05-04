@@ -1,4 +1,5 @@
 <resources>
+    <!--Mostly unused arrays for settings screen-->
     <!-- Reply Preference -->
     <string-array name="reply_entries">
         <item>Reply</item>

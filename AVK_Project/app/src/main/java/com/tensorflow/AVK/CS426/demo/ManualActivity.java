@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+/**
+ * @file ManualActivity.java
+ *
+ * @brief Creates a webview of the Hydrant documentation.
+ *
+ */
+
 package com.tensorflow.AVK.CS426.demo;
 
 import android.os.Bundle;

@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+/**
+ * @file SettingsActivity.java
+ *
+ * @brief Shows the project description and website information.
+ *
+ */
+
 package com.tensorflow.AVK.CS426.demo;
 
 import android.os.Bundle;

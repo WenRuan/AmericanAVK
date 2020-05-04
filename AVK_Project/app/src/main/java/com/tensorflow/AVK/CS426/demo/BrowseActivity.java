@@ -13,6 +13,14 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
+
+/**
+ * @file BrowseActivity.java
+ *
+ * @brief Shows the database of hydrants.
+ *
+ */
+
 package com.tensorflow.AVK.CS426.demo;
 
 import android.content.Intent;

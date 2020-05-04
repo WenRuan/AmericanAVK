@@ -14,6 +14,14 @@
  * limitations under the License.
  */
 
+/**
+ * @file MainActivity.java
+ *
+ * @brief Main Splash Screen of the Application
+ *
+ */
+
+//Header Files
 package com.tensorflow.AVK.CS426.demo;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -31,6 +39,7 @@ import org.tensorflow.lite.examples.demo.R;
 import java.io.IOException;
 import java.util.ArrayList;
 
+//Main Function
 public class MainActivity extends AppCompatActivity {
 
     private DatabaseHelper mDBHelper;

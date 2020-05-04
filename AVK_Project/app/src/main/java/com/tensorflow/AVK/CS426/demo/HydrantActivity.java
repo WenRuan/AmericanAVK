@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+/**
+ * @file HydrantActivity.java
+ *
+ * @brief Holds the pdf file to view hydrant documentation.
+ *
+ */
+
 package com.tensorflow.AVK.CS426.demo;
 
 import androidx.appcompat.app.AppCompatActivity;

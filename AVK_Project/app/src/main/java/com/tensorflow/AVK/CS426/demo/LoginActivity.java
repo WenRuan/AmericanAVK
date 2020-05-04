@@ -14,6 +14,13 @@
  * limitations under the License.
  */
 
+/**
+ * @file LoginActivity.java
+ *
+ * @brief Optional Login Screen of the Application
+ *
+ */
+
 package com.tensorflow.AVK.CS426.demo;
 
 import androidx.appcompat.app.AppCompatActivity;
