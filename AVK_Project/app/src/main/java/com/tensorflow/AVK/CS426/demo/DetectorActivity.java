@@ -57,19 +57,24 @@ import static com.google.android.gms.common.internal.safeparcel.SafeParcelable.N
  * objects.
  */
 
-/** configurations for tensorflow model detection**/
+/** configurations for American AVK Application**/
 public class DetectorActivity extends CameraActivity implements OnImageAvailableListener {
   private static final Logger LOGGER = new Logger();
 
   // Configuration values for the prepackaged SSD model.
   private static final int TF_OD_API_INPUT_SIZE = 300;
   private static final boolean TF_OD_API_IS_QUANTIZED = true;
+
+  /**Currently using the AVK model, detect.tflite in asset folder has more than 2 objects trained**/
   private static final String TF_OD_API_MODEL_FILE = "detectTrue.tflite";
+  /**label map created to correspond with the AVK model**/
   private static final String TF_OD_API_LABELS_FILE = "file:///android_asset/labelmap1.txt";
   private static final DetectorMode MODE = DetectorMode.TF_OD_API;
   // Minimum detection confidence to track a detection.
+  /**Minimum: 50% and above only for object detection, reject others**/
   private static final float MINIMUM_CONFIDENCE_TF_OD_API = 0.5f;
   private static final boolean MAINTAIN_ASPECT = false;
+  /**Might be hard to keep up with older devices.**/
   private static final Size DESIRED_PREVIEW_SIZE = new Size(1024, 720);
   private static final boolean SAVE_PREVIEW_BITMAP = false;
   private static final float TEXT_SIZE_DIP = 10;
@@ -164,7 +169,10 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
   }
 
 
-  //Takes the current image from the camera, this runs while the camera is on.
+  /**Takes the current image from the camera, this runs while the camera is on.**/
+  /**Uses a canvas to hold the current image fed from camera input**/
+  /**Contains run in background function**/
+  /**Draws boxes and labels the AVK hydrant model**/
   @Override
   protected void processImage() {
     ++timestamp;
@@ -234,6 +242,7 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
             //Capture current detection object
             final Button button = findViewById(R.id.button4);
 
+            /**The action for the capture button, does database matching**/
             //Uses database to match the object names
             DatabaseAccess db = DatabaseAccess.getInstance(getApplicationContext());
             //Capture button on detection screen
@@ -274,6 +283,8 @@ public class DetectorActivity extends CameraActivity implements OnImageAvailable
           }
         });
   }
+
+  /**Opens the custom webView to open the link for the hydrant taken from the database**/
   public void openWebActivity(String manual_link){
     Intent intent = new Intent(this, ManualActivity.class);
     intent.putExtra("MANUAL_LINK", manual_link);
